@@ -43,8 +43,8 @@
             </div>
 
             <div>
-                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Annual Income ($)</label>
-                <input type="number" id="income" value="55000" min="0" 
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Annual Income (₹)</label>
+                <input type="number" id="income" value="550000" min="0" 
                     class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
@@ -55,8 +55,8 @@
             </div>
 
             <div>
-                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Requested Loan Amount ($)</label>
-                <input type="number" id="loanAmount" value="20000" min="0" 
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Requested Loan Amount (₹)</label>
+                <input type="number" id="loanAmount" value="200000" min="0" 
                     class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
@@ -83,10 +83,10 @@
             const creditScore = parseFloat(document.getElementById('creditScore').value);
             const loanAmount = parseFloat(document.getElementById('loanAmount').value);
 
-            // Replicate model normalization matrices
+            // Replicate model normalization matrices (Scaled up for INR input matching)
             const creditNormalized = (creditScore - 300) / 550;
-            const incomeNormalized = income / 150000;
-            const loanNormalized = loanAmount / 80000;
+            const incomeNormalized = income / 1500000;
+            const loanNormalized = loanAmount / 800000;
 
             // Generate Risk Score metric
             const score = (creditNormalized * 0.5) + (incomeNormalized * 0.3) - (loanNormalized * 0.2);
