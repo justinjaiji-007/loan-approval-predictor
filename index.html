@@ -3,47 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Loan Approval Predictor</title>
+    <title>CreditRisk AI - Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Smooth glowing animations */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .glow-bg {
+            animation: pulse-glow 8s infinite ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden font-sans">
 
-    <div class="bg-white p-8 rounded-xl shadow-md max-w-md w-full">
-        <h1 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-            💰 CreditRisk AI
-        </h1>
-        <p class="text-sm text-gray-600 mb-6">Instant edge-computed credit risk evaluation tool.</p>
+    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl glow-bg"></div>
+    <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl glow-bg" style="animation-delay: -4s;"></div>
+
+    <div class="bg-slate-900/60 backdrop-blur-xl p-8 rounded-2xl border border-slate-800/80 max-w-md w-full shadow-2xl relative z-10 transition-all duration-300 hover:border-slate-700/50">
         
-        <hr class="border-gray-200 mb-6">
+        <div class="flex items-center justify-between mb-2">
+            <h1 class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent flex items-center gap-2">
+                <span>💰</span> CreditRisk AI
+            </h1>
+            <span class="text-[10px] uppercase tracking-widest bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full font-semibold">
+                v2.0 Live
+            </span>
+        </div>
+        <p class="text-xs text-slate-400 mb-6">Edge-computed automated underwriting risk assessment engine.</p>
+        
+        <hr class="border-slate-800 mb-6">
 
         <form id="loanForm" class="space-y-4">
             <div>
-                <label class="block text-sm font-medium text-gray-700">Applicant Age</label>
-                <input type="number" id="age" value="30" min="18" max="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Applicant Age</label>
+                <input type="number" id="age" value="30" min="18" max="100" 
+                    class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">Annual Income ($)</label>
-                <input type="number" id="income" value="55000" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Annual Income ($)</label>
+                <input type="number" id="income" value="55000" min="0" 
+                    class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">Credit Score (300 - 850)</label>
-                <input type="number" id="creditScore" value="650" min="300" max="850" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Credit Score (300 - 850)</label>
+                <input type="number" id="creditScore" value="650" min="300" max="850" 
+                    class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">Requested Loan Amount ($)</label>
-                <input type="number" id="loanAmount" value="20000" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Requested Loan Amount ($)</label>
+                <input type="number" id="loanAmount" value="20000" min="0" 
+                    class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 shadow-inner outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" required>
             </div>
 
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors shadow-xs mt-4">
-                Evaluate Application
+            <button type="submit" 
+                class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:via-indigo-500 hover:to-violet-500 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 shadow-lg shadow-indigo-600/20 cursor-pointer active:scale-[0.99] mt-6 text-sm">
+                Evaluate Credit Risk
             </button>
         </form>
 
-        <div id="resultBox" class="mt-6 p-4 rounded-md hidden">
-            <p id="resultText" class="font-semibold text-center text-sm"></p>
+        <div id="resultBox" class="mt-6 p-4 rounded-xl border opacity-0 scale-95 pointer-events-none transition-all duration-300 flex flex-col items-center justify-center gap-2 text-center">
+            <div id="resultIcon" class="text-2xl"></div>
+            <p id="resultText" class="font-bold text-sm tracking-wide"></p>
+            <p id="resultSubtext" class="text-xs text-slate-400 max-w-[90%]"></p>
         </div>
     </div>
 
@@ -51,32 +77,41 @@
         document.getElementById('loanForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Grab inputs
+            // Extract numeric inputs
             const age = parseFloat(document.getElementById('age').value);
             const income = parseFloat(document.getElementById('income').value);
             const creditScore = parseFloat(document.getElementById('creditScore').value);
             const loanAmount = parseFloat(document.getElementById('loanAmount').value);
 
-            // Replicate the math weights used to build our ML model
+            // Replicate model normalization matrices
             const creditNormalized = (creditScore - 300) / 550;
             const incomeNormalized = income / 150000;
             const loanNormalized = loanAmount / 80000;
 
+            // Generate Risk Score metric
             const score = (creditNormalized * 0.5) + (incomeNormalized * 0.3) - (loanNormalized * 0.2);
 
-            // UI Elements
             const resultBox = document.getElementById('resultBox');
+            const resultIcon = document.getElementById('resultIcon');
             const resultText = document.getElementById('resultText');
+            const resultSubtext = document.getElementById('resultSubtext');
 
-            resultBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            // Reset dynamic utility classes
+            resultBox.className = "mt-6 p-4 rounded-xl border transition-all duration-300 flex flex-col items-center justify-center gap-1.5 text-center opacity-100 scale-100";
 
-            // Evaluate Threshold
+            // Conditional rendering logic based on metrics
             if (score > 0.3) {
-                resultBox.classList.add('bg-green-100', 'text-green-800');
-                resultText.innerHTML = `🎉 <b>Approved!</b> Application passes safety risk thresholds.`;
+                resultBox.classList.add('bg-emerald-950/40', 'border-emerald-500/30', 'shadow-lg', 'shadow-emerald-950/20');
+                resultIcon.innerHTML = "⚡";
+                resultText.className = "font-bold text-sm text-emerald-400 tracking-wide";
+                resultText.innerHTML = "APPLICATION APPROVED";
+                resultSubtext.innerHTML = "Applicant profile meets automatic low-risk underwriting metrics.";
             } else {
-                resultBox.classList.add('bg-red-100', 'text-red-800');
-                resultText.innerHTML = `❌ <b>Rejected.</b> High risk profile detected.`;
+                resultBox.classList.add('bg-rose-950/40', 'border-rose-500/30', 'shadow-lg', 'shadow-rose-950/20');
+                resultIcon.innerHTML = "🔒";
+                resultText.className = "font-bold text-sm text-rose-400 tracking-wide";
+                resultText.innerHTML = "APPLICATION REJECTED";
+                resultSubtext.innerHTML = "Risk index exceeds acceptable threshold rules. Manual review required.";
             }
         });
     </script>
