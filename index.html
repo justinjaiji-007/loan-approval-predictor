@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Loan Approval Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-md max-w-md w-full">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+            💰 CreditRisk AI
+        </h1>
+        <p class="text-sm text-gray-600 mb-6">Instant edge-computed credit risk evaluation tool.</p>
+        
+        <hr class="border-gray-200 mb-6">
+
+        <form id="loanForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Applicant Age</label>
+                <input type="number" id="age" value="30" min="18" max="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Annual Income ($)</label>
+                <input type="number" id="income" value="55000" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Credit Score (300 - 850)</label>
+                <input type="number" id="creditScore" value="650" min="300" max="850" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Requested Loan Amount ($)</label>
+                <input type="number" id="loanAmount" value="20000" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-xs border p-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors shadow-xs mt-4">
+                Evaluate Application
+            </button>
+        </form>
+
+        <div id="resultBox" class="mt-6 p-4 rounded-md hidden">
+            <p id="resultText" class="font-semibold text-center text-sm"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Grab inputs
+            const age = parseFloat(document.getElementById('age').value);
+            const income = parseFloat(document.getElementById('income').value);
+            const creditScore = parseFloat(document.getElementById('creditScore').value);
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+
+            // Replicate the math weights used to build our ML model
+            const creditNormalized = (creditScore - 300) / 550;
+            const incomeNormalized = income / 150000;
+            const loanNormalized = loanAmount / 80000;
+
+            const score = (creditNormalized * 0.5) + (incomeNormalized * 0.3) - (loanNormalized * 0.2);
+
+            // UI Elements
+            const resultBox = document.getElementById('resultBox');
+            const resultText = document.getElementById('resultText');
+
+            resultBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+
+            // Evaluate Threshold
+            if (score > 0.3) {
+                resultBox.classList.add('bg-green-100', 'text-green-800');
+                resultText.innerHTML = `🎉 <b>Approved!</b> Application passes safety risk thresholds.`;
+            } else {
+                resultBox.classList.add('bg-red-100', 'text-red-800');
+                resultText.innerHTML = `❌ <b>Rejected.</b> High risk profile detected.`;
+            }
+        });
+    </script>
+</body>
+</html>
